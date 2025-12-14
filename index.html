@@ -50,11 +50,17 @@
             border: none;
             outline: none;
         }
+        #dark-mode-btn {
+            top: 10px; /* верхняя позиция */
+        }
+        #light-mode-btn {
+            top: 40px; /* смещаем вторую кнопку вниз */
+        }
     </style>
 </head>
 <body>
-    <button onclick="switchToDarkMode()">Темная тема</button>
-    <button onclick="switchToLightMode()">Светлая тема</button>
+    <button id="dark-mode-btn" onclick="switchToDarkMode()">Темная тема</button>
+    <button id="light-mode-btn" onclick="switchToLightMode()">Светлая тема</button>
 
     <main>
         <div class="shadow-dance-container">
