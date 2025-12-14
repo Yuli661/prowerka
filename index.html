@@ -37,11 +37,16 @@
         th {
             background-color: lightcoral;
         }
-        button {
+        .btn-container {
+            display: flex;
+            justify-content: flex-end;
+            align-items: center;
+            gap: 10px; /* Расстояние между кнопками */
             position: absolute;
             top: 10px;
             right: 10px;
-            margin-right: 10px;
+        }
+        button {
             cursor: pointer;
             padding: 5px 10px;
             font-size: 16px;
@@ -50,17 +55,16 @@
             border: none;
             outline: none;
         }
-        #dark-mode-btn {
-            top: 10px; /* верхняя позиция */
-        }
         #light-mode-btn {
-            top: 40px; /* смещаем вторую кнопку вниз */
+            color: black; /* делаем текст чёрным для кнопки Light Mode */
         }
     </style>
 </head>
 <body>
-    <button id="dark-mode-btn" onclick="switchToDarkMode()">Темная тема</button>
-    <button id="light-mode-btn" onclick="switchToLightMode()">Светлая тема</button>
+    <div class="btn-container">
+        <button onclick="switchToDarkMode()">Темная тема</button>
+        <button id="light-mode-btn" onclick="switchToLightMode()">Светлая тема</button>
+    </div>
 
     <main>
         <div class="shadow-dance-container">
