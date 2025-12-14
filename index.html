@@ -5,17 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Дипломная работа</title>
     <style>
-        body {
+        body.dark-theme {
             background-color: black;
             color: white;
-            font-family: Arial, sans-serif;
-            text-align: center;
+        }
+        body.light-theme {
+            background-color: white;
+            color: black;
         }
         h1 {
             margin-bottom: 20px;
         }
         a {
-            color: white;
+            color: inherit; /* Наследует цвет от родителя */
             font-size: 30px;
             margin: 0 10px;
             text-decoration: none;
@@ -30,7 +32,7 @@
             margin-top: 20px;
         }
         th, td {
-            border: 2px solid white;
+            border: 2px solid currentColor; /* Линия принимает цвет текущего текста */
             padding: 10px;
             text-align: center;
         }
@@ -50,19 +52,16 @@
             cursor: pointer;
             padding: 5px 10px;
             font-size: 16px;
-            background-color: rgba(255, 255, 255, 0.2);
-            color: white;
+            background-color: transparent;
+            color: inherit; /* Цвет текста зависит от состояния темы */
             border: none;
             outline: none;
         }
-        #light-mode-btn {
-            color: black; /* делаем текст чёрным для кнопки Light Mode */
-        }
     </style>
 </head>
-<body>
+<body class="dark-theme"> <!-- Изначально активирована тёмная тема -->
     <div class="btn-container">
-        <button onclick="switchToDarkMode()">Темная тема</button>
+        <button id="dark-mode-btn" onclick="switchToDarkMode()">Темная тема</button>
         <button id="light-mode-btn" onclick="switchToLightMode()">Светлая тема</button>
     </div>
 
@@ -111,13 +110,13 @@
 
     <script>
         function switchToDarkMode() {
-            document.body.style.backgroundColor = 'black';
-            document.body.style.color = 'white';
+            document.body.classList.add("dark-theme");
+            document.body.classList.remove("light-theme");
         }
 
         function switchToLightMode() {
-            document.body.style.backgroundColor = 'white';
-            document.body.style.color = 'black';
+            document.body.classList.add("light-theme");
+            document.body.classList.remove("dark-theme");
         }
     </script>
 
