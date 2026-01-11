@@ -13,11 +13,20 @@
             background-color: white;
             color: black;
         }
+        body {
+            display: flex; 
+            flex-direction: column; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            text-align: center; 
+            margin: 0; 
+        }
         h1 {
             margin-bottom: 20px;
         }
         a {
-            color: inherit; /* Наследует цвет от родителя */
+            color: inherit; 
             font-size: 30px;
             margin: 0 10px;
             text-decoration: none;
@@ -32,7 +41,7 @@
             margin-top: 20px;
         }
         th, td {
-            border: 2px solid currentColor; /* Линия принимает цвет текущего текста */
+            border: 2px solid currentColor; 
             padding: 10px;
             text-align: center;
         }
@@ -43,7 +52,7 @@
             display: flex;
             justify-content: flex-end;
             align-items: center;
-            gap: 10px; /* Расстояние между кнопками */
+            gap: 10px; 
             position: absolute;
             top: 10px;
             right: 10px;
@@ -53,13 +62,13 @@
             padding: 5px 10px;
             font-size: 16px;
             background-color: transparent;
-            color: inherit; /* Цвет текста зависит от состояния темы */
+            color: inherit; 
             border: none;
             outline: none;
         }
     </style>
 </head>
-<body class="dark-theme"> <!-- Изначально активирована тёмная тема -->
+<body class="dark-theme">
     <div class="btn-container">
         <button id="dark-mode-btn" onclick="switchToDarkMode()">Темная тема</button>
         <button id="light-mode-btn" onclick="switchToLightMode()">Светлая тема</button>
@@ -71,7 +80,6 @@
         </div>
     </main>
 
-    <!-- Гиперссылки в ряд -->
     <div>
         <a href="https://www.figma.com/proto/xAi6XXsdGe6YLeKQy3kcX4/Untitled?node-id=1-2&t=odVa5KYu2FFzcQbc-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A3" target="_blank">Прототип на Figma</a>
         <a href="https://stackblitz.com/" target="_blank">StackBlitz</a>
@@ -80,7 +88,6 @@
 
     <p>Здравствуйте! Это моя дипломная работа. Я учусь на первом курсе и узнала, как работать с Figma, StackBlitz и т.д. Также я научилась работать с нейросетями, создавать видео, картинки и тексты с их помощью.</p>
 
-    <!-- Таблица -->
     <table>
         <tr>
             <th>.</th>
