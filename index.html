@@ -111,6 +111,7 @@
             background-clip: text;
             color: transparent;
             animation: gradient-shift 3s infinite alternate;
+            background-size: 200% auto;
         }
         
         .subtitle {
@@ -135,13 +136,15 @@
         
         .dark-theme .section-title {
             border-color: #ff005e;
+            color: #ffffff;
         }
         
         .light-theme .section-title {
             border-color: #00d4ff;
+            color: #333333;
         }
         
-        /* Ссылки */
+        /* Ссылки - ИСПРАВЛЕНО: читаемый текст */
         .links-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -158,16 +161,30 @@
             flex-direction: column;
             align-items: center;
             text-align: center;
+            /* Убедимся, что цвет текста наследуется корректно */
+            color: inherit;
         }
         
         .dark-theme .link-card {
             background-color: rgba(255, 255, 255, 0.05);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            color: #ffffff; /* Явно задаем белый цвет для темной темы */
         }
         
         .light-theme .link-card {
             background-color: rgba(0, 0, 0, 0.03);
             border: 1px solid rgba(0, 0, 0, 0.1);
+            color: #333333; /* Темный цвет для светлой темы */
+        }
+        
+        /* Специфичные цвета для текста внутри карточек */
+        .link-title {
+            color: inherit !important;
+        }
+        
+        .link-description {
+            color: inherit !important;
+            opacity: 0.8;
         }
         
         .link-card:hover {
@@ -176,15 +193,27 @@
         
         .dark-theme .link-card:hover {
             box-shadow: 0 10px 20px rgba(255, 0, 94, 0.2);
+            color: #ffffff;
         }
         
         .light-theme .link-card:hover {
             box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+            color: #333333;
         }
         
         .link-icon {
             font-size: 2.5rem;
             margin-bottom: 15px;
+            /* Иконки должны быть видны в обеих темах */
+            color: inherit;
+        }
+        
+        .dark-theme .link-icon {
+            color: #ffffff;
+        }
+        
+        .light-theme .link-icon {
+            color: #333333;
         }
         
         .link-title {
@@ -195,7 +224,6 @@
         
         .link-description {
             font-size: 0.9rem;
-            opacity: 0.8;
         }
         
         /* Описание */
@@ -211,10 +239,12 @@
         
         .dark-theme .description {
             background-color: rgba(255, 255, 255, 0.05);
+            color: #ffffff;
         }
         
         .light-theme .description {
             background-color: rgba(0, 0, 0, 0.03);
+            color: #333333;
         }
         
         /* Таблица */
@@ -240,19 +270,23 @@
         .dark-theme th {
             background-color: rgba(255, 0, 94, 0.2);
             border-color: rgba(255, 0, 94, 0.5);
+            color: #ffffff;
         }
         
         .light-theme th {
             background-color: rgba(0, 212, 255, 0.2);
             border-color: rgba(0, 212, 255, 0.5);
+            color: #333333;
         }
         
         .dark-theme td {
             border-color: rgba(255, 255, 255, 0.2);
+            color: #ffffff;
         }
         
         .light-theme td {
             border-color: rgba(0, 0, 0, 0.1);
+            color: #333333;
         }
         
         /* Подвал */
@@ -263,6 +297,14 @@
             font-size: 0.9rem;
             opacity: 0.7;
             width: 100%;
+        }
+        
+        .dark-theme footer {
+            color: #ffffff;
+        }
+        
+        .light-theme footer {
+            color: #333333;
         }
         
         /* Анимации */
@@ -439,7 +481,7 @@
             <p>В этой работе представлены все мои проекты, созданные в течение учебного года.</p>
         </div>
         
-        <!-- Таблица (заполните своими данными) -->
+        <!-- Таблица -->
         <div class="section fade-in">
             <h2 class="section-title">Сводная таблица проектов</h2>
             <div class="table-container">
@@ -490,7 +532,7 @@
     </div>
 
     <script>
-        // Функции переключения темы
+        // Функции переключения темы - ИСПРАВЛЕНО
         function switchToDarkMode() {
             document.body.classList.add("dark-theme");
             document.body.classList.remove("light-theme");
@@ -498,6 +540,9 @@
             document.getElementById('light-mode-btn').classList.remove('active');
             // Сохраняем выбор в localStorage
             localStorage.setItem('theme', 'dark');
+            
+            // Обновляем стили для иконок
+            updateIconColors();
         }
 
         function switchToLightMode() {
@@ -507,6 +552,23 @@
             document.getElementById('dark-mode-btn').classList.remove('active');
             // Сохраняем выбор в localStorage
             localStorage.setItem('theme', 'light');
+            
+            // Обновляем стили для иконок
+            updateIconColors();
+        }
+        
+        // Функция для обновления цветов иконок
+        function updateIconColors() {
+            const isDarkTheme = document.body.classList.contains('dark-theme');
+            const linkIcons = document.querySelectorAll('.link-icon i');
+            
+            linkIcons.forEach(icon => {
+                if (isDarkTheme) {
+                    icon.style.color = '#ffffff';
+                } else {
+                    icon.style.color = '#333333';
+                }
+            });
         }
         
         // При загрузке страницы проверяем сохранённую тему
@@ -535,6 +597,9 @@
             document.querySelectorAll('.section').forEach(section => {
                 observer.observe(section);
             });
+            
+            // Инициализируем цвета иконок
+            updateIconColors();
         });
     </script>
 </body>
