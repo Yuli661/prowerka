@@ -3,184 +3,539 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Дипломная работа</title>
+    <title>Дипломная работа Василенко Юлии</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        body.dark-theme {
-            background-color: black;
-            color: white;
+        /* Базовые стили и темы */
+        :root {
+            --transition-speed: 0.3s;
         }
-        body.light-theme {
-            background-color: white;
-            color: black;
-        }
+        
         body {
-            display: flex; 
-            flex-direction: column; 
-            justify-content: center; 
-            align-items: center; 
-            height: 100vh; 
-            text-align: center; 
-            margin: 0; 
-            background: #121212;
-            font-family: 'Arial', sans-serif;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            transition: background-color var(--transition-speed), color var(--transition-speed);
+            min-height: 100vh;
+            position: relative;
         }
-        h1 {
-            margin-bottom: 20px;
-            font-weight: bold;
-            font-size: 4rem;
+        
+        body.dark-theme {
+            background-color: #121212;
+            color: #f0f0f0;
+        }
+        
+        body.light-theme {
+            background-color: #ffffff;
+            color: #333333;
+        }
+        
+        /* Кнопки переключения темы */
+        .theme-switcher {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            display: flex;
+            gap: 10px;
+            background: rgba(0, 0, 0, 0.1);
+            padding: 8px;
+            border-radius: 30px;
+            backdrop-filter: blur(5px);
+        }
+        
+        .theme-btn {
+            cursor: pointer;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            font-weight: 600;
+            transition: all 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .dark-theme .theme-btn {
+            background-color: #333;
             color: #fff;
-            text-shadow: 5px 5px 0 #ff005e, 10px 10px 0 #00d4ff;
-            animation: shadow-dance 2s infinite;
         }
-        h2 {
-            margin-top: 20px;
+        
+        .light-theme .theme-btn {
+            background-color: #f0f0f0;
+            color: #333;
         }
-        a {
-            color: inherit; 
-            font-size: 30px;
-            margin: 0 10px;
+        
+        .theme-btn.active {
+            box-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+        }
+        
+        .theme-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        /* Основной контент */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        /* Заголовок */
+        .title-container {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 30px;
+            border-radius: 20px;
+            width: 100%;
+        }
+        
+        .dark-theme .title-container {
+            background: linear-gradient(135deg, rgba(255,0,94,0.1), rgba(0,212,255,0.1));
+        }
+        
+        .light-theme .title-container {
+            background: linear-gradient(135deg, rgba(255,0,94,0.05), rgba(0,212,255,0.05));
+        }
+        
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            margin: 0 0 10px 0;
+            line-height: 1.2;
+            background: linear-gradient(90deg, #ff005e, #00d4ff);
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+            animation: gradient-shift 3s infinite alternate;
+        }
+        
+        .subtitle {
+            font-size: 1.5rem;
+            opacity: 0.8;
+            margin-top: 10px;
+        }
+        
+        /* Разделы */
+        .section {
+            width: 100%;
+            margin-bottom: 50px;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            margin-bottom: 30px;
+            padding-bottom: 10px;
+            border-bottom: 3px solid;
+            display: inline-block;
+        }
+        
+        .dark-theme .section-title {
+            border-color: #ff005e;
+        }
+        
+        .light-theme .section-title {
+            border-color: #00d4ff;
+        }
+        
+        /* Ссылки */
+        .links-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            width: 100%;
+        }
+        
+        .link-card {
+            padding: 25px;
+            border-radius: 15px;
             text-decoration: none;
-        }
-        a:hover {
-            text-decoration: underline;
-        }
-        table {
-            width: 70%;
-            border-collapse: collapse;
-            background-color: pink;
-            margin-top: 20px;
-        }
-        th, td {
-            border: 2px solid currentColor; 
-            padding: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
             text-align: center;
         }
-        th {
-            background-color: lightcoral;
+        
+        .dark-theme .link-card {
+            background-color: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
         }
-        .btn-container {
-            display: flex;
-            justify-content: flex-end;
-            align-items: center;
-            gap: 10px; 
-            position: absolute;
-            top: 10px;
-            right: 10px;
+        
+        .light-theme .link-card {
+            background-color: rgba(0, 0, 0, 0.03);
+            border: 1px solid rgba(0, 0, 0, 0.1);
         }
-        button {
-            cursor: pointer;
-            padding: 5px 10px;
-            font-size: 16px;
-            background-color: transparent;
-            color: inherit; 
-            border: none;
-            outline: none;
+        
+        .link-card:hover {
+            transform: translateY(-5px);
         }
-        @keyframes shadow-dance {
-            0%, 100% {
-                text-shadow: 5px 5px 0 #ff005e, 10px 10px 0 #00d4ff;
+        
+        .dark-theme .link-card:hover {
+            box-shadow: 0 10px 20px rgba(255, 0, 94, 0.2);
+        }
+        
+        .light-theme .link-card:hover {
+            box-shadow: 0 10px 20px rgba(0, 212, 255, 0.2);
+        }
+        
+        .link-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+        
+        .link-title {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+        
+        .link-description {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+        
+        /* Описание */
+        .description {
+            font-size: 1.2rem;
+            line-height: 1.6;
+            max-width: 800px;
+            text-align: center;
+            margin: 40px auto;
+            padding: 30px;
+            border-radius: 15px;
+        }
+        
+        .dark-theme .description {
+            background-color: rgba(255, 255, 255, 0.05);
+        }
+        
+        .light-theme .description {
+            background-color: rgba(0, 0, 0, 0.03);
+        }
+        
+        /* Таблица */
+        .table-container {
+            width: 100%;
+            overflow-x: auto;
+            margin-top: 30px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        th, td {
+            padding: 15px;
+            text-align: center;
+            border: 1px solid;
+        }
+        
+        .dark-theme th {
+            background-color: rgba(255, 0, 94, 0.2);
+            border-color: rgba(255, 0, 94, 0.5);
+        }
+        
+        .light-theme th {
+            background-color: rgba(0, 212, 255, 0.2);
+            border-color: rgba(0, 212, 255, 0.5);
+        }
+        
+        .dark-theme td {
+            border-color: rgba(255, 255, 255, 0.2);
+        }
+        
+        .light-theme td {
+            border-color: rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Подвал */
+        footer {
+            margin-top: 60px;
+            text-align: center;
+            padding: 20px;
+            font-size: 0.9rem;
+            opacity: 0.7;
+            width: 100%;
+        }
+        
+        /* Анимации */
+        @keyframes gradient-shift {
+            0% {
+                background-position: 0% 50%;
             }
-            50% {
-                text-shadow: -5px -5px 0 #00d4ff, -10px -10px 0 #ff005e;
+            100% {
+                background-position: 100% 50%;
+            }
+        }
+        
+        @keyframes fade-in {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        .fade-in {
+            animation: fade-in 0.8s ease-out;
+        }
+        
+        /* Адаптивность */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 2.5rem;
+            }
+            
+            .subtitle {
+                font-size: 1.2rem;
+            }
+            
+            .links-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .theme-switcher {
+                top: 10px;
+                right: 10px;
+                flex-direction: column;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            h1 {
+                font-size: 2rem;
+            }
+            
+            .container {
+                padding: 20px 15px;
             }
         }
     </style>
 </head>
 <body class="dark-theme">
-    <div class="btn-container">
-        <button id="dark-mode-btn" onclick="switchToDarkMode()">Темная тема</button>
-        <button id="light-mode-btn" onclick="switchToLightMode()">Светлая тема</button>
+    <!-- Переключатель темы -->
+    <div class="theme-switcher">
+        <button class="theme-btn active" id="dark-mode-btn" onclick="switchToDarkMode()">
+            <i class="fas fa-moon"></i> Темная
+        </button>
+        <button class="theme-btn" id="light-mode-btn" onclick="switchToLightMode()">
+            <i class="fas fa-sun"></i> Светлая
+        </button>
     </div>
 
-    <main>
-        <div class="shadow-dance-container">
-            <h1 class="shadow-dance-text">Дипломная работа<br>Василенко Юлии</h1>
+    <div class="container">
+        <!-- Заголовок -->
+        <div class="title-container fade-in">
+            <h1>Дипломная работа</h1>
+            <div class="subtitle">Василенко Юлии | 1 курс</div>
         </div>
-    </main>
-
-
-    
-     <div>
-        <h2>Ссылки на ресурсы:</h2>
-        <div class="links-container">
-            <div class="link-item">
-                <a href="https://yuli661.github.io" target="_blank">github</a>
-            </div>
-            <div class="link-item">
-                <a href="https://www.figma.com/proto/xAi6XXsdGe6YLeKQy3kcX4/Untitled?node-id=1-2&t=odVa5KYu2FFzcQbc-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A3" target="_blank">Прототип на Figma</a>
-            </div>
-          
-            <div class="link-item">
-                <a href="https://jsitor.com/IjX9sA5Tg" target="_blank">Jsitor</a>
-                <a href="https://codepen.io/pen" target="_blank">CodePen</a>
-            </div>
-              <div class="link-item">
-                <a href="https://stackblitz.com/" target="_blank">StackBlitz</a>
+        
+        <!-- Основные ссылки -->
+        <div class="section fade-in">
+            <h2 class="section-title">Мои работы и проекты</h2>
+            <div class="links-grid">
+                <a href="https://yuli661.github.io" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fab fa-github"></i>
+                    </div>
+                    <div class="link-title">GitHub</div>
+                    <div class="link-description">Основной репозиторий с проектами</div>
+                </a>
+                
+                <a href="https://www.figma.com/proto/xAi6XXsdGe6YLeKQy3kcX4/Untitled?node-id=1-2&t=odVa5KYu2FFzcQbc-1&scaling=min-zoom&content-scaling=fixed&page-id=0%3A3" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fab fa-figma"></i>
+                    </div>
+                    <div class="link-title">Figma прототип</div>
+                    <div class="link-description">Дизайн-прототип дипломной работы</div>
+                </a>
+                
+                <a href="https://jsitor.com/IjX9sA5Tg" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fas fa-code"></i>
+                    </div>
+                    <div class="link-title">JSitor</div>
+                    <div class="link-description">Онлайн-редактор JavaScript кода</div>
+                </a>
+                
+                <a href="https://codepen.io/pen" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fab fa-codepen"></i>
+                    </div>
+                    <div class="link-title">CodePen</div>
+                    <div class="link-description">Площадка для фронтенд-разработки</div>
+                </a>
+                
+                <a href="https://stackblitz.com/" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fas fa-bolt"></i>
+                    </div>
+                    <div class="link-title">StackBlitz</div>
+                    <div class="link-description">Онлайн IDE для веб-разработки</div>
+                </a>
             </div>
         </div>
-         <br>
-         <br>
-        <h2>Доп.</h2>
-        <div class="links-container">
-            <div class="link-item">
-                <a href="https://vms.drweb.ru/scan_file/" target="_blank">Антивирус</a>
-            </div>
-            <div class="link-item">
-                <a href="https://yuli661.github.io/3D/" target="_blank">3D web</a>
-            </div>
-              <div class="link-item">
-                <a href="https://yuli661.github.io/table/" target="_blank">Прайс лист</a>
-                   <div class="link-item">
-                <a href="https://yuli661.github.io/gif/" target="_blank">открытка</a>
-            </div>
-                   <div class="link-item">
-                <a href="https://yuli661.github.io/copy/" target="_blank">копия</a>
-            </div>
+        
+        <!-- Дополнительные ресурсы -->
+        <div class="section fade-in">
+            <h2 class="section-title">Дополнительные ресурсы</h2>
+            <div class="links-grid">
+                <a href="https://vms.drweb.ru/scan_file/" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fas fa-shield-alt"></i>
+                    </div>
+                    <div class="link-title">Антивирус Dr.Web</div>
+                    <div class="link-description">Онлайн-проверка файлов на вирусы</div>
+                </a>
+                
+                <a href="https://yuli661.github.io/3D/" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fas fa-cube"></i>
+                    </div>
+                    <div class="link-title">3D Веб-проект</div>
+                    <div class="link-description">Эксперименты с 3D графикой в браузере</div>
+                </a>
+                
+                <a href="https://yuli661.github.io/table/" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fas fa-table"></i>
+                    </div>
+                    <div class="link-title">Прайс-лист</div>
+                    <div class="link-description">Таблица с ценами и услугами</div>
+                </a>
+                
+                <a href="https://yuli661.github.io/gif/" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fas fa-gift"></i>
+                    </div>
+                    <div class="link-title">Открытка</div>
+                    <div class="link-description">Интерактивная веб-открытка</div>
+                </a>
+                
+                <a href="https://yuli661.github.io/copy/" target="_blank" class="link-card">
+                    <div class="link-icon">
+                        <i class="fas fa-copy"></i>
+                    </div>
+                    <div class="link-title">Копия проекта</div>
+                    <div class="link-description">Резервная копия основного проекта</div>
+                </a>
             </div>
         </div>
+        
+        <!-- Описание -->
+        <div class="description fade-in">
+            <p>Здравствуйте! Это моя дипломная работа.</p>
+            <p>Я учусь на первом курсе и за это время научилась работать с Figma, StackBlitz, GitHub и другими инструментами веб-разработки. Также я освоила основы работы с нейросетями для создания контента: изображений, видео и текстов.</p>
+            <p>В этой работе представлены все мои проекты, созданные в течение учебного года.</p>
+        </div>
+        
+        <!-- Таблица (заполните своими данными) -->
+        <div class="section fade-in">
+            <h2 class="section-title">Сводная таблица проектов</h2>
+            <div class="table-container">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Название проекта</th>
+                            <th>Технологии</th>
+                            <th>Сложность</th>
+                            <th>Статус</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Главная страница</td>
+                            <td>HTML, CSS, JavaScript</td>
+                            <td>Средняя</td>
+                            <td>Завершён</td>
+                        </tr>
+                        <tr>
+                            <td>3D Веб-проект</td>
+                            <td>Three.js, WebGL</td>
+                            <td>Высокая</td>
+                            <td>В разработке</td>
+                        </tr>
+                        <tr>
+                            <td>Интерактивная открытка</td>
+                            <td>CSS анимации, JS</td>
+                            <td>Низкая</td>
+                            <td>Завершён</td>
+                        </tr>
+                        <tr>
+                            <td>Прототип в Figma</td>
+                            <td>Figma, UI/UX дизайн</td>
+                            <td>Средняя</td>
+                            <td>Завершён</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <!-- Подвал -->
+        <footer class="fade-in">
+            <p>Дипломная работа Василенко Юлии © 2023</p>
+            <p>Все проекты доступны в открытом доступе на GitHub</p>
+        </footer>
     </div>
-
-
-    <p>Здравствуйте! Это моя дипломная работа. Я учусь на первом курсе и узнала, как работать с Figma, StackBlitz и т.д. Также я научилась работать с нейросетями, создавать видео, картинки и тексты с их помощью.</p>
-
-    <table>
-        <tr>
-            <th>.</th>
-            <th>.</th>
-            <th>.</th>
-            <th>.</th>
-        </tr>
-        <tr>
-            <td>.</td>
-            <td>.</td>
-            <td>.</td>
-            <td>.</td>
-        </tr>
-        <tr>
-            <td>.</td>
-            <td>.</td>
-            <td>.</td>
-            <td>.</td>
-        </tr>
-        <tr>
-            <td>.</td>
-            <td>.</td>
-            <td>.</td>
-            <td>.</td>
-        </tr>
-    </table>
 
     <script>
+        // Функции переключения темы
         function switchToDarkMode() {
             document.body.classList.add("dark-theme");
             document.body.classList.remove("light-theme");
+            document.getElementById('dark-mode-btn').classList.add('active');
+            document.getElementById('light-mode-btn').classList.remove('active');
+            // Сохраняем выбор в localStorage
+            localStorage.setItem('theme', 'dark');
         }
 
         function switchToLightMode() {
             document.body.classList.add("light-theme");
             document.body.classList.remove("dark-theme");
+            document.getElementById('light-mode-btn').classList.add('active');
+            document.getElementById('dark-mode-btn').classList.remove('active');
+            // Сохраняем выбор в localStorage
+            localStorage.setItem('theme', 'light');
         }
+        
+        // При загрузке страницы проверяем сохранённую тему
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme');
+            if (savedTheme === 'light') {
+                switchToLightMode();
+            } else {
+                switchToDarkMode();
+            }
+            
+            // Добавляем анимацию появления элементов при прокрутке
+            const observerOptions = {
+                threshold: 0.1
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('fade-in');
+                    }
+                });
+            }, observerOptions);
+            
+            // Наблюдаем за всеми элементами с классом 'section'
+            document.querySelectorAll('.section').forEach(section => {
+                observer.observe(section);
+            });
+        });
     </script>
-    
 </body>
 </html>
